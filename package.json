@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "@benchristel/taste": "^0.3.2",
-    "preact": "^10.11.0"
+    "@types/leaflet": "^1.9.1",
+    "leaflet": "^1.9.3",
+    "preact": "^10.11.0",
+    "react-leaflet": "^4.2.0"
   },
   "scripts": {
     "build": "yarn vite build",
