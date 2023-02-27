@@ -3,37 +3,37 @@ import {  useEffect} from "preact/hooks"
 import "./app.css"
 import {DomUtil, GridLayer, map, tileLayer} from 'leaflet'
 
+import imgUrl from './quad.png'
+
+const CanvasLayer = GridLayer.extend({
+  createTile: function(coord: {x:Number, y:Number}){
+      // create a <canvas> element for drawing
+      const tile = DomUtil.create('canvas', 'leaflet-tile');
+
+      // setup tile width and height according to the options
+      const size = this.getTileSize();
+      tile.width = size.x;
+      tile.height = size.y;
+
+      
+      const image = new Image()
+      image.src = imgUrl
+      const ctx = tile.getContext('2d');
+      ctx && drawHouse(ctx);
+      ctx && ctx.drawImage(image, 0, 0)
+
+      // return the tile so it can be rendered on screen
+      return tile;
+  }
+});
+
+
 export function App() {
   
     useEffect(() => {
-      const myMap = map('map').setView([51.505, -0.09], 13);
-
-      const CanvasLayer = GridLayer.extend({
-        createTile: function(coord: {x:Number, y:Number}){
-            // create a <canvas> element for drawing
-            const tile = DomUtil.create('canvas', 'leaflet-tile');
-    
-            // setup tile width and height according to the options
-            const size = this.getTileSize();
-            tile.width = size.x;
-            tile.height = size.y;
-    
-            // get a canvas context and draw something on it using coords.x, coords.y and coords.z
-            const ctx = tile.getContext('2d');
-            ctx && drawHouse(ctx);
-    
-            // return the tile so it can be rendered on screen
-            return tile;
-        }
-    });
-
-      // tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //     maxZoom: 19,
-      //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      // }).addTo(myMap);
-
+      const myMap = map('map').setView([0, 0], 10
+        );
       new CanvasLayer().addTo(myMap)
-
     }, []);
 
   return <div id="map"></div>
@@ -44,6 +44,7 @@ test("App", {
     expect(true, equals, true)
   },
 })
+
 function drawHouse(ctx: CanvasRenderingContext2D) {
   ctx.lineWidth = 10;
 
