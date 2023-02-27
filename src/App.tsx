@@ -3,7 +3,12 @@ import {  useEffect} from "preact/hooks"
 import "./app.css"
 import {DomUtil, GridLayer, map, tileLayer} from 'leaflet'
 
-import imgUrl from './quad.png'
+import quadSrc from './quad.png'
+function quadPNG() {
+  const image = new Image()
+  image.src = quadSrc
+  return image
+}
 
 const CanvasLayer = GridLayer.extend({
   createTile: function(coord: {x:Number, y:Number}){
@@ -14,13 +19,10 @@ const CanvasLayer = GridLayer.extend({
       const size = this.getTileSize();
       tile.width = size.x;
       tile.height = size.y;
-
-      
-      const image = new Image()
-      image.src = imgUrl
+    
       const ctx = tile.getContext('2d');
+      ctx && ctx.drawImage(quadPNG(), 0, 0)
       ctx && drawHouse(ctx);
-      ctx && ctx.drawImage(image, 0, 0)
 
       // return the tile so it can be rendered on screen
       return tile;
@@ -28,11 +30,10 @@ const CanvasLayer = GridLayer.extend({
 });
 
 
+
 export function App() {
-  
-    useEffect(() => {
-      const myMap = map('map').setView([0, 0], 10
-        );
+      useEffect(() => {
+      const myMap = map('map').setView([0, 0], 10);
       new CanvasLayer().addTo(myMap)
     }, []);
 
