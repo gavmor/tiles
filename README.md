@@ -1,3 +1,20 @@
+# Tiles
+
+<img src="https://user-images.githubusercontent.com/606529/222300035-1a5a14c9-6d27-43d4-ba00-0325493bbc68.png" alt="Current" style="max-width: 100%;" width=100><img src="https://user-images.githubusercontent.com/606529/222300118-8fb7db77-6b86-4e32-9c79-c086f4989a53.png" alt="Goals" style="max-width: 100%;" width=100>
+
+## Goals
+- [ ] an infinitely scrollable procedurally generated overland map intended accommodates something like Helicity's [LoBit Overworld](https://helicity.itch.io/lobit-overworld) tiles.
+- [ ] multilayer ie terrain, rivers, roads, sites
+- [ ] logic upgrade to eg waveform collapse
+- [ ] logically arranged art assets
+- [ ] logically arranged PNG regions
+- [ ] Arbitrary number of PNG regions
+- [x] *(3/1)* Two alternating squares from a PNG.
+- [x] *(2/27)* A PNG written to canvas element 
+- [x] A canvas element
+
+
+---
 # Preact, TypeScript, Vite, @benchristel/taste
 
 ## Setup
