@@ -3,14 +3,7 @@ import { useEffect } from "preact/hooks"
 import "./app.css"
 import { DomUtil, GridLayer, map, tileLayer } from "leaflet"
 
-import quadSrc from "./quad.png"
-import { makeNoise2D } from "open-simplex-noise"
-
-const quad = new Image()
-const imageLoadPromise = new Promise((resolve) => {
-  quad.addEventListener("load", resolve)
-})
-quad.src = quadSrc
+import { imageLoadPromise, quad, sprite, spriteFor } from "./spritemap"
 
 const CanvasLayer = GridLayer.extend({
   createTile: function (
@@ -27,8 +20,8 @@ const CanvasLayer = GridLayer.extend({
       const drawArgs = [
         quad,
         ...sprite[spriteFor(coords)],
-        quad.width / 2,
-        quad.height / 2,
+        16,
+        16,
         0,
         0,
         width,
@@ -42,16 +35,6 @@ const CanvasLayer = GridLayer.extend({
     return tile
   },
 })
-
-const sprite = {
-  blue: [0, 0],
-  yellow: [360, 0],
-}
-
-function spriteFor(coords: { x: number; y: number }) {
-  const value = makeNoise2D(420)(coords.x, coords.y)
-  return value > 0 ? "blue" : "yellow"
-}
 
 export function App() {
   useEffect(() => {
