@@ -12,8 +12,8 @@ export function spriteFor(coords: { x: number; y: number; }) {
   return value > 0 ? "blue" : "yellow";
 }
 
-export const quad = new Image();
+export const image = new Image();
 export const imageLoadPromise = new Promise((resolve) => {
-  quad.addEventListener("load", resolve);
+  image.addEventListener("load", resolve);
 });
-quad.src = lobitOverworld;
+image.src = lobitOverworld;
