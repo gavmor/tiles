@@ -39,7 +39,12 @@ const CanvasLayer = GridLayer.extend({
 export function App() {
   useEffect(() => {
     const myMap = map("map").setView([0, 0], 10)
-    new CanvasLayer({tileSize: 32, keepBuffer: 16, updateWhenIdle: true}).addTo(myMap)
+    new CanvasLayer({
+      tileSize: 32,
+      keepBuffer: 16,
+      updateWhenIdle: true,
+      attribution: "<a href=\"https://helicity.itch.io/lobit-overworld\">Helicity's LoBit Overworld</a>"
+     }).addTo(myMap)
   }, [])
 
   return <div id="map"></div>
