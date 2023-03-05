@@ -24,14 +24,6 @@
       },
       "problemMatcher": [],
       "label": "dev server"
-    },
-    {
-      "type": "vsls",
-      "taskUid": "npm:setup",
-      "problemMatcher": [
-        "$vsls"
-      ],
-      "label": "Shared: npm:setup"
     }
   ]
 }

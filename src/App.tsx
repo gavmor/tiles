@@ -4,6 +4,7 @@ import "./app.css"
 import { DomUtil, GridLayer, map, tileLayer } from "leaflet"
 
 import quadSrc from "./quad.png"
+import { makeNoise2D } from "open-simplex-noise"
 
 const quad = new Image()
 const imageLoadPromise = new Promise((resolve) => {
@@ -23,11 +24,6 @@ const CanvasLayer = GridLayer.extend({
     const ctx = tile.getContext("2d")
 
     imageLoadPromise.then(() => {
-      const sprite = {
-        blue: [0, 0],
-        yellow: [quad.width / 2, 0],
-      }
-      // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
       const drawArgs = [
         quad,
         ...sprite[spriteFor(coords)],
@@ -47,14 +43,14 @@ const CanvasLayer = GridLayer.extend({
   },
 })
 
+const sprite = {
+  blue: [0, 0],
+  yellow: [360, 0],
+}
+
 function spriteFor(coords: { x: number; y: number }) {
-  return coords.y % 2
-    ? coords.x % 2
-      ? "blue"
-      : "yellow"
-    : coords.x % 2
-      ? "yellow"
-      : "blue"
+  const value = makeNoise2D(420)(coords.x, coords.y)
+  return value > 0 ? "blue" : "yellow"
 }
 
 export function App() {
