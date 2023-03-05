@@ -3,9 +3,10 @@ import { useEffect } from "preact/hooks"
 import "./app.css"
 import { DomUtil, GridLayer, map, tileLayer } from "leaflet"
 
-import { imageLoadPromise, quad, sprite, spriteFor } from "./spritemap"
+import { spriteSize, imageLoadPromise, quad, sprite, spriteFor } from "./spritemap"
 
-const CanvasLayer = GridLayer.extend({
+
+const SpriteLayer = GridLayer.extend({
   createTile: function (
     coords: { x: number; y: number },
     done: (error: any, tile: any) => unknown,
@@ -20,8 +21,8 @@ const CanvasLayer = GridLayer.extend({
       const drawArgs = [
         quad,
         ...sprite[spriteFor(coords)],
-        16,
-        16,
+        spriteSize,
+        spriteSize,
         0,
         0,
         width,
@@ -39,7 +40,8 @@ const CanvasLayer = GridLayer.extend({
 export function App() {
   useEffect(() => {
     const myMap = map("map").setView([0, 0], 10)
-    new CanvasLayer({
+    // @ts-ignore
+    new SpriteLayer({
       tileSize: 32,
       keepBuffer: 16,
       updateWhenIdle: true,

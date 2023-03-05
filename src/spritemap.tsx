@@ -1,6 +1,8 @@
 import lobitOverworld from "./lobit-overworld.png";
 import { makeNoise2D } from "open-simplex-noise";
 
+export const spriteSize = 16;
+
 export const sprite = {
   blue: [0, 0],
   yellow: [360, 0],
