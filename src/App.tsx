@@ -4,35 +4,33 @@ import "./app.css"
 import { DomUtil, GridLayer, map, tileLayer } from 'leaflet'
 
 import quadSrc from './quad.png'
-function quadPNG() {
-  const image = new Image()
-  image.src = quadSrc
-  return image
-}
+
+const quad = new Image()
+const imageLoadPromise = new Promise(resolve => {
+  quad.addEventListener("load", resolve)
+})
+quad.src = quadSrc
 
 const CanvasLayer = GridLayer.extend({
-  createTile: function (coords: { x: number, y: number }) {
-    var error;
-    
+  createTile: function (coords: { x: number, y: number }, done: (error: any, tile: any) => unknown) {    
     const tile = DomUtil.create('canvas', 'leaflet-tile');
     const {x: width, y: height} = this.getTileSize();
     Object.assign(tile, {width, height})
 
     const ctx = tile.getContext('2d');
     // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-    const quad = quadPNG()
     
-    const sprite = {
-      blue: [0, 0],
-      yellow: [quad.width / 2, 0]
-    }
-    
-    
-    console.log(coords.x)
-    ctx && ctx.drawImage(...[quad, ...sprite[spriteFor(coords)], quad.width / 2, quad.height / 2, 0, 0, width, height])
-    ctx && drawHouse(ctx);
-    // done(error, tile);
-
+    imageLoadPromise.then(() => {      
+      const sprite = {
+        blue: [0, 0],
+        yellow: [quad.width / 2, 0]
+      }
+      // @ts-ignore
+      ctx && ctx.drawImage(...[quad, ...sprite[spriteFor(coords)], quad.width / 2, quad.height / 2, 0, 0, width, height])
+      ctx && drawHouse(ctx);
+      done(null, tile)
+    })
+  // https://leafletjs.com/reference.html#gridlayer
     return tile;
   }
 });

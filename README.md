@@ -5,7 +5,7 @@
 ## Goals
 - [ ] an infinitely scrollable procedurally generated overland map intended accommodates something like Helicity's [LoBit Overworld](https://helicity.itch.io/lobit-overworld) tiles.
 - [ ] multilayer ie terrain, rivers, roads, sites
-- [ ] logic upgrade to eg waveform collapse
+- [ ] logic upgrade to eg perlin noise
 - [ ] logically arranged art assets
 - [ ] logically arranged PNG regions
 - [ ] Arbitrary number of PNG regions
