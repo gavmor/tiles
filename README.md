@@ -7,8 +7,8 @@
 - [ ] multilayer ie terrain, rivers, roads, sites
 - [ ] logic upgrade to eg perlin noise
 - [ ] logically arranged art assets
-- [ ] logically arranged PNG regions
-- [ ] Arbitrary number of PNG regions
+- [x] simplex-arranged PNG regions
+- [x] Arbitrary number of PNG regions
 - [x] *(3/1)* Two alternating squares from a PNG.
 - [x] *(2/27)* A PNG written to canvas element 
 - [x] A canvas element

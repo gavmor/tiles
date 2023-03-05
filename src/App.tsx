@@ -56,7 +56,7 @@ function spriteFor(coords: { x: number; y: number }) {
 export function App() {
   useEffect(() => {
     const myMap = map("map").setView([0, 0], 10)
-    new CanvasLayer().addTo(myMap)
+    new CanvasLayer({tileSize: 32, keepBuffer: 16, updateWhenIdle: true}).addTo(myMap)
   }, [])
 
   return <div id="map"></div>
