@@ -21,7 +21,6 @@ const CanvasLayer = GridLayer.extend({
     Object.assign(tile, { width, height })
 
     const ctx = tile.getContext("2d")
-    // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 
     imageLoadPromise.then(() => {
       const sprite = {
