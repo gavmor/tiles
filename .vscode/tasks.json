@@ -7,7 +7,9 @@
       "type": "typescript",
       "tsconfig": "tsconfig.json",
       "option": "watch",
-      "problemMatcher": ["$tsc-watch"],
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
       "group": "build",
       "runOptions": {
         "runOn": "folderOpen"
@@ -22,6 +24,14 @@
       },
       "problemMatcher": [],
       "label": "dev server"
+    },
+    {
+      "type": "vsls",
+      "taskUid": "npm:setup",
+      "problemMatcher": [
+        "$vsls"
+      ],
+      "label": "Shared: npm:setup"
     }
   ]
 }
