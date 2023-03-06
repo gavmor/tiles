@@ -10,7 +10,7 @@ function App() {
         <span>
           {name}
           <SpriteCanvas
-            args={[...sheet.spriteFor(name), 0, 0, 32, 32]}
+            args={[...sheet.drawSrc(name), 0, 0, 32, 32]}
           />
         </span>
       ))}

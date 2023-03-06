@@ -3,7 +3,7 @@ import {useEffect} from "preact/hooks"
 import "./app.css"
 import {DomUtil, GridLayer, map, tileLayer} from "leaflet"
 
-import {imageLoadPromise, image} from "./lobit"
+import {imageLoadPromise, image, sheet} from "./lobit"
 
 import {spriteSize, sprite, spriteFor} from "./spritemap"
 import {drawHouse} from "./drawHouse"
@@ -21,10 +21,7 @@ const SpriteLayer = GridLayer.extend({
 
     imageLoadPromise.then(() => {
       const drawArgs = [
-        image,
-        ...sprite[spriteFor(coords)],
-        spriteSize,
-        spriteSize,
+        ...sheet.drawSrc(spriteFor(coords)),
         0,
         0,
         width,
