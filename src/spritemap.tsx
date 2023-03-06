@@ -1,4 +1,3 @@
-import lobitOverworld from "./lobit-overworld.png"
 import {makeNoise2D} from "open-simplex-noise"
 import type {DrawSrc} from "./CanvasContext"
 
@@ -13,11 +12,6 @@ export function spriteFor(coords: {x: number; y: number}) {
   return value > 0 ? "blue" : "yellow"
 }
 
-export const image = new Image()
-export const imageLoadPromise = new Promise((resolve) => {
-  image.addEventListener("load", resolve)
-})
-image.src = lobitOverworld
 
 type SpriteMap = Record<string, [number, number]>
 
