@@ -2,28 +2,22 @@ import {render, Fragment, h} from "preact"
 import {useEffect, useRef} from "preact/hooks"
 import {DrawArgs} from "./CanvasContext"
 
-import quad from "./quad.png"
-import {SpriteSheet} from "./spritemap"
-
-const image = new Image()
-image.src = quad
-const spriteSize = 360
+import {image, SpriteSheet, spriteSize} from "./spritemap"
 
 await new Promise((resolve) =>
   image.addEventListener("load", resolve),
 )
 
-render(<App />, document.getElementById("app")!)
+const coordsByName: Record<string, [number, number]> = {
+  blue: [0, 11],
+  red: [1, 11],
+  green: [2, 11],
+  light: [3, 11],
+}
+
+const sheet = SpriteSheet(image, spriteSize, coordsByName)
 
 function App() {
-  const coordsByName: Record<string, [number, number]> = {
-    blue: [0, 0],
-    red: [0, 1],
-    yellow: [1, 0],
-    green: [1, 1],
-  }
-
-  const sheet = SpriteSheet(image, 360, coordsByName)
 
   return (
     <>
@@ -47,3 +41,5 @@ function SpriteCanvas(props: {args: DrawArgs}) {
   }, [])
   return <canvas width="32" height="32" ref={canvasRef}></canvas>
 }
+
+render(<App />, document.getElementById("app")!)
