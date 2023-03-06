@@ -12,7 +12,6 @@ export function spriteFor(coords: {x: number; y: number}) {
   return value > 0 ? "blue" : "yellow"
 }
 
-
 type SpriteMap = Record<string, [number, number]>
 
 export function SpriteSheet<Map extends SpriteMap>(

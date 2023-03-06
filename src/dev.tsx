@@ -1,10 +1,9 @@
 import {render, Fragment, h} from "preact"
 import {useEffect, useRef} from "preact/hooks"
 import {DrawArgs} from "./CanvasContext"
-import { coordsByName, sheet } from "./lobit"
+import {coordsByName, sheet} from "./lobit"
 
 function App() {
-
   return (
     <>
       {Object.keys(coordsByName).map((name) => (

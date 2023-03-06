@@ -3,13 +3,9 @@ import {useEffect} from "preact/hooks"
 import "./app.css"
 import {DomUtil, GridLayer, map, tileLayer} from "leaflet"
 
-import {  imageLoadPromise, image} from "./lobit"
+import {imageLoadPromise, image} from "./lobit"
 
-import {
-  spriteSize,
-  sprite,
-  spriteFor,
-} from "./spritemap"
+import {spriteSize, sprite, spriteFor} from "./spritemap"
 import {drawHouse} from "./drawHouse"
 
 const SpriteLayer = GridLayer.extend({
